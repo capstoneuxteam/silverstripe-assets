@@ -116,7 +116,7 @@ class File extends DataObject implements AssetContainer, Thumbnail, CMSPreviewab
     private static $singular_name = "File";
 
     private static $plural_name = "Files";
-    
+
     /**
      * Control whether images in the admin will be resampled
      *
@@ -1483,6 +1483,7 @@ class File extends DataObject implements AssetContainer, Thumbnail, CMSPreviewab
      */
     protected function filterFilename($name)
     {
+        if (is_array($name)) return '';
         // Fix illegal characters
         $filter = $this->getFilter();
         $parts = array_filter(preg_split("#[/\\\\]+#", $name ?? '') ?? []);
